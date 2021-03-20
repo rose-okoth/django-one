@@ -28,6 +28,7 @@ class Post(models.Model):
     editor = models.ForeignKey('Editor', on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)
     pub_date = models.DateTimeField(auto_now_add=True)
+    post_image = models.ImageField(upload_to = 'posts/', default='default.jpg')
 
     @classmethod
     def todays_quotes(cls):
