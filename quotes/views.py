@@ -39,5 +39,16 @@ def past_days_quotes(request,past_date):
     quotes = Post.days_quotes(date)
     return render(request, 'all-quotes/past-quotes.html', {'date': date,'quotes':quotes})
 
+def search_results(request):
 
+    if 'post' in request.GET and request.GET["post"]:
+        search_term = request.GET.get("post")
+        searched_posts = Post.search_by_title(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'all-quotes/search.html',{"message":message,"posts": searched_posts})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'all-quotes/search.html',{"message":message})
 
