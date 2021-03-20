@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse,Http404
 import datetime as dt
+from .models import Post
 
 # Create your views here.
 def welcome(request):
@@ -8,7 +9,8 @@ def welcome(request):
 
 def quote_of_day(request):
     date = dt.date.today()
-    return render(request, 'all-quotes/today-quotes.html', {'date':date,})
+    quotes = Post.todays_quotes()
+    return render(request, 'all-quotes/today-quotes.html', {'date':date,'quotes':quotes})
 
 def convert_dates(dates):
 
@@ -34,4 +36,6 @@ def past_days_quotes(request,past_date):
     if date == dt.date.today():
         return redirect(quote_of_day)
 
-    return render(request, 'all-quotes/past-quotes.html', {'date': date})
+    quotes = Post.days_quotes(date)
+    return render(request, 'all-quotes/past-quotes.html', {'date': date,'quotes':quotes})
+
