@@ -52,3 +52,11 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'all-quotes/search.html',{"message":message})
 
+def post(request,post_id):
+    try:
+        post = Post.objects.get(id = post_id)
+
+    except DoesNotExist:
+        raise Http404()
+
+    return render(request,"all-quotes/post.html", {"post":post})
