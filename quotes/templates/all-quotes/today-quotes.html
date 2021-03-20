@@ -1,7 +1,25 @@
 {%extends 'all-quotes/base.html'%}
 
 {% block content %}
-
 {{block.super}}
+
+<!-- Looping through quotes   -->
+    {% for quotes_item in quotes %}
+
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h2 class="text-center"> {{ quotes_item.title }} </h2>
+        </div>
+    </div>
+
+    {% empty %}
+
+    <div class="row">
+        <h2 class="text-center">No quotes to display</h2>
+    </div>
+
+    {% endfor %}
+
+</div>
 
 {% endblock %}
