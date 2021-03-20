@@ -17,3 +17,10 @@ class tags(models.Model):
 
     def __str__(self):
         return self.name
+
+class Post(models.Model):
+    title = models.CharField(max_length =60)
+    quote = models.TextField()
+    editor = models.ForeignKey('Editor', on_delete=models.CASCADE)
+    tags = models.ManyToManyField(tags)
+    pub_date = models.DateTimeField(auto_now_add=True)
