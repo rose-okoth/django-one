@@ -6,8 +6,14 @@ class EditorTestClass(TestCase):
 
 # Set up method
     def setUp(self):
-        self.james= Editor(first_name = 'Rose', last_name ='Okoth', email ='okoth.rose@gmail.com')
+        self.rose= Editor(first_name = 'Rose', last_name ='Okoth', email ='okoth.rose@gmail.com')
 
 # Testing  instance
     def test_instance(self):
-        self.assertTrue(isinstance(self.james,Editor))
+        self.assertTrue(isinstance(self.rose,Editor))
+
+# Testing Save Method
+    def test_save_method(self):
+        self.rose.save_editor()
+        editors = Editor.objects.all()
+        self.assertTrue(len(editors) > 0)
