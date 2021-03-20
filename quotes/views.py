@@ -1,32 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http  import HttpResponse,Http404
 import datetime as dt
 
 # Create your views here.
 def welcome(request):
     return render(request, 'welcome.html')
-    
+
 def quote_of_day(request):
     date = dt.date.today()
-
-    # Function for converting dates to find exact day.
-    day = convert_dates(date)
-
-    html = f'''
-        <html>
-            <body>
-                <h1> Quote for {day} {date.day}-{date.month}-{date.year}</h1>
-            </body>
-        </html>
-            '''
-    return HttpResponse(html) 
+    return render(request, 'all-quotes/today-quotes.html', {'date':date,})
 
 def convert_dates(dates):
 
     # Function that gets the weekday number for the date.
     day_number = dt.date.weekday(dates)
 
-    days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday',"Sunday"]
+    days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
     # Returning the actual day of the week.
     day = days[day_number]
@@ -40,13 +29,9 @@ def past_days_quotes(request,past_date):
     except ValueError:
         # Raise 404 error when ValueError is thrown
         raise Http404()
+        assert False
 
-    day = convert_dates(date)
-    html = f'''
-        <html>
-            <body>
-                <h1>Quotes for {day} {date.day}-{date.month}-{date.year}</h1>
-            </body>
-        </html>
-            '''
-    return HttpResponse(html)
+    if date == dt.date.today():
+        return redirect(quote_of_day)
+
+    return render(request, 'all-quotes/past-quotes.html', {'date': date})
