@@ -39,3 +39,8 @@ class Post(models.Model):
     def days_quotes(cls,date):
         quotes = cls.objects.filter(pub_date__date = date)
         return quotes
+
+    @classmethod
+    def search_by_title(cls,search_term):
+        quotes = cls.objects.filter(title__icontains=search_term)
+        return quotes

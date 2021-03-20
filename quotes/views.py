@@ -39,3 +39,5 @@ def past_days_quotes(request,past_date):
     quotes = Post.days_quotes(date)
     return render(request, 'all-quotes/past-quotes.html', {'date': date,'quotes':quotes})
 
+
+
