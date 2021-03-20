@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Editor,Post,tags
+import datetime as dt
 
 # Create your tests here.
 class EditorTestClass(TestCase):
@@ -29,12 +30,22 @@ class PostTestClass(TestCase):
         self.new_tag = tags(name = 'testing')
         self.new_tag.save()
 
-        self.new_article= Article(title = 'Test Article',post = 'This is a random test Post',editor = self.rose)
-        self.new_article.save()
+        self.new_post= Post(title = 'Test Post',quote = 'This is a random test Post',editor = self.rose)
+        self.new_post.save()
 
-        self.new_article.tags.add(self.new_tag)
+        self.new_post.tags.add(self.new_tag)
 
     def tearDown(self):
         Editor.objects.all().delete()
         tags.objects.all().delete()
         Post.objects.all().delete()
+
+    def test_get_quotes_today(self):
+        today_quotes = Post.todays_quotes()
+        self.assertTrue(len(today_quotes)>0)
+
+    def test_get_quotes_by_date(self):
+        test_date = '2017-03-17'
+        date = dt.datetime.strptime(test_date, '%Y-%m-%d').date()
+        quotes_by_date = Post.days_quotes(date)
+        self.assertTrue(len(quotes_by_date) == 0)
