@@ -8,6 +8,9 @@ def welcome(request):
 def quote_of_day(request):
     date = dt.date.today()
 
+    # Function for converting dates to find exact day.
+    day = convert_dates(date)
+
     html = f'''
         <html>
             <body>
@@ -24,6 +27,6 @@ def convert_dates(dates):
 
     days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday',"Sunday"]
 
-    # Returning the actual day of the week
+    # Returning the actual day of the week.
     day = days[day_number]
     return day
