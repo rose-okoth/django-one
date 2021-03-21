@@ -10,6 +10,10 @@ This an app where users can get inspirational/motivational quotes.
 
 > Rose Okoth.
 ​
+# Screenshots
+
+![Alt text](/static/images/Screenshot.png?raw=true "Landing Page")
+
 # BDD
 
 * Users should be able to:
@@ -26,7 +30,7 @@ This an app where users can get inspirational/motivational quotes.
 1. Switch into the directory:
    * `cd django-one`
 ​
-# Running the application
+# Running the Application
 
 1. Create the virtual environment
    * ` $ python3 -m venv --without-pip virtual `
@@ -48,7 +52,7 @@ This an app where users can get inspirational/motivational quotes.
 1. To run the tests for app:
     * `$ python3 manage.py test quotes`
 
-# To view past quotes
+# Viewing Past Quotes
 
 1. * `https://quotes-nation.herokuapp.com/archives/date.ie.2021-03-20`
     
