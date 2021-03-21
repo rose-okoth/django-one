@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse,Http404
 import datetime as dt
-from .models import Post
+from .models import Post,tags
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def welcome(request):
+    all_quote = Post.objects.all()
     return render(request, 'welcome.html')
 
 def quote_of_day(request):
