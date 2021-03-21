@@ -8,7 +8,7 @@ This an app where users can get inspirational/motivational quotes.
 
 # Author(s) Information
 
-Rose Okoth.
+> Rose Okoth.
 ​
 # BDD
 
