@@ -7,7 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 def welcome(request):
     all_quote = Post.objects.all()
-    return render(request, 'welcome.html',{"all_quote":all_quote})
+    return render(request, 'welcome.html')
 
 def quote_of_day(request):
     date = dt.date.today()

@@ -25,6 +25,7 @@ class PostTestClass(TestCase):
         # Creating a new editor and saving it
         self.rose= Editor(first_name = 'Rose', last_name ='Okoth', email ='okoth.rose@gmail.com')
         self.rose.save_editor()
+        # self.rose.delete_editor()
 
         # Creating a new tag and saving it
         self.new_tag = tags(name = 'testing')
