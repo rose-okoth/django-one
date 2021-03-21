@@ -5,6 +5,9 @@
     <html>
     <head>
         <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&display=swap" rel="stylesheet">
 
         {% if title %}
 
@@ -27,13 +30,29 @@
 
     <body>
         {% include "navbar.html" %}
+        <br><br><br><br>
+        {% block content %} 
 
-        {% block content %} <h1 class='text-center'>Quotes for {{date|date:"l d-F Y"}}</h1> {%endblock%}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="text-center">Quotes Nation</h1>
+              <p class="text-center">Inspirational Motivational Quotes To Inspire You To Greatness</p>
+            </div>
+          </div>
+        
+        {%endblock%}
 
+        </div>
+        
         {% block scripts %}
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script>
+                $("#carousel").carousel();
+            </script>
+            
         {% bootstrap_javascript %}
         {% endblock %}
 

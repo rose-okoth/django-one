@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'quotes.apps.QuotesConfig',
+    # 'quotes.apps.QuotesConfig',
+    'quotes',
     'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',
