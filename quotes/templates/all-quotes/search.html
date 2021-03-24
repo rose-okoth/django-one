@@ -19,11 +19,9 @@
       <blockquote class="blockquote mb-0 card-body">
         <h1>{{post.title}}</h1>
           <p>{{post.quote}}</p>
-        <footer class="blockquote-footer">
-          <small class="text-muted">
-            Posted by <cite title="Source Title">{{ quotes_item.editor }}</cite>
-          </small>
-        </footer>
+          <footer class="blockquote-footer">
+            Posted by <cite title="Source Title">{{ post.editor }}</cite>
+          </footer>
       </blockquote>
     </div>
     {% endfor %}
