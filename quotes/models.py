@@ -16,9 +16,6 @@ class Editor(models.Model):
     def save_editor(self):
         self.save()
 
-    # def delete_editor(self):
-    #     self.delete()
-
     class Meta:
         ordering = ['first_name']
 
