@@ -65,7 +65,7 @@ ROOT_URLCONF = 'nation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['django_registration'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -160,3 +160,4 @@ django_heroku.settings(locals())
 
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='/accounts/login/'
+REGISTER_REDIRECT_URL='/accounts/login/'
