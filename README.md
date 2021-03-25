@@ -21,6 +21,9 @@ This an app where users can get inspirational/motivational quotes.
     - search for quotes in the app.
     - view the most recent quotes.
     - view archived quotes.
+    - register an account.
+    - create and post their own quotes.
+    - login and logout to view and post quotes.
 
 # Setup Instructions
 
