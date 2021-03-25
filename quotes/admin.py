@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Post,tags
 
-class ArticleAdmin(admin.ModelAdmin):
+class POstAdmin(admin.ModelAdmin):
     filter_horizontal =('tags')
 
 # Register your models here.

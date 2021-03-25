@@ -4,6 +4,7 @@ import datetime as dt
 from .models import Post,tags
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from .forms import NewPostForm
 
 # Create your views here.
 def welcome(request):
@@ -62,3 +63,18 @@ def post(request,post_id):
     except DoesNotExist:
         raise Http404()
     return render(request,"all-quotes/post.html", {"post":post})
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.editor = current_user
+            post.save()
+        return redirect('welcome')
+
+    else:
+        form = NewPostForm()
+    return render(request, 'new_post.html', {"form": form})

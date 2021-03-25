@@ -1,6 +1,7 @@
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 # Create your models here.
 class tags(models.Model):
@@ -17,7 +18,7 @@ class Post(models.Model):
     Class for the quote posts.
     '''
     title = models.CharField(max_length =60)
-    quote = models.TextField()
+    quote = HTMLField()
     editor = models.ForeignKey(User, on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)
     pub_date = models.DateTimeField(auto_now_add=True)
