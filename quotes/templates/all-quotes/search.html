@@ -18,7 +18,7 @@
     <div class="card p-3">
       <blockquote class="blockquote mb-0 card-body">
         <h1>{{post.title}}</h1>
-          <p>{{post.quote}}</p>
+          <p>{{post.quote|safe}}</p>
           <footer class="blockquote-footer">
             Posted by <cite title="Source Title">{{ post.editor }}</cite>
           </footer>

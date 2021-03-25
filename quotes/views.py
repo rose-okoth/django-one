@@ -3,12 +3,15 @@ from django.http  import HttpResponse,Http404
 import datetime as dt
 from .models import Post,tags
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+from .forms import NewPostForm
 
 # Create your views here.
 def welcome(request):
     all_quote = Post.objects.all()
     return render(request, 'welcome.html')
 
+@login_required(login_url='/accounts/login/')
 def quote_of_day(request):
     date = dt.date.today()
     quotes = Post.todays_quotes()
@@ -25,6 +28,7 @@ def convert_dates(dates):
     day = days[day_number]
     return day
 
+@login_required(login_url='/accounts/login/')
 def past_days_quotes(request,past_date):
     try:
         # Converts data from the string Url
@@ -41,6 +45,7 @@ def past_days_quotes(request,past_date):
     quotes = Post.days_quotes(date)
     return render(request, 'all-quotes/past-quotes.html', {'date': date,'quotes':quotes})
 
+@login_required(login_url='/accounts/login/')
 def search_results(request):
 
     if 'post' in request.GET and request.GET["post"]:
@@ -54,9 +59,25 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'all-quotes/search.html',{"message":message})
 
+@login_required(login_url='/accounts/login/')
 def post(request,post_id):
     try:
         post = Post.objects.get(id = post_id)
     except DoesNotExist:
         raise Http404()
     return render(request,"all-quotes/post.html", {"post":post})
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.editor = current_user
+            post.save()
+        return redirect('welcome')
+
+    else:
+        form = NewPostForm()
+    return render(request, 'new_post.html', {"form": form})

@@ -13,7 +13,9 @@
    </div>
 
    <div class="row">
-     <p>{{post.quote}}</p>
+    {% autoescape on %}
+    {{post.quote|safe}}
+    {% endautoescape %}
    </div>
 
    <div class="row">
