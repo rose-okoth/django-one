@@ -3,6 +3,7 @@ from django.http  import HttpResponse,Http404
 import datetime as dt
 from .models import Post,tags
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def welcome(request):
@@ -54,6 +55,7 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'all-quotes/search.html',{"message":message})
 
+@login_required(login_url='/accounts/login/')
 def post(request,post_id):
     try:
         post = Post.objects.get(id = post_id)
